@@ -28,12 +28,11 @@ public class CalendarCreateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//ログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-	/*
 		if (session.getAttribute("loginUser") == null) {
-			  response.sendRedirect("/machico/LoginServlet");
+			response.sendRedirect("/machico/LoginServlet");
 			return;
 		}
-	*/
+
 		//フォワード先のjsp書き換え
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/calendarCreate.jsp");
 		dispatcher.forward(request, response);
@@ -45,15 +44,14 @@ public class CalendarCreateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//ログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		/*
 		if (session.getAttribute("loginUser") == null) {
 			response.sendRedirect("/machico/LoginServlet");
 			return;
 		}
-		*/
+
 		//calendarCreate.jspから入力されたカレンダータイトルを取得
 		request.setCharacterEncoding("UTF-8");
-		String title = request.getParameter("title_textbox");
+		String title = request.getParameter("title-textbox");
 
 		//バリデーションをインポート(要確認！！)
 		//Boolean vl = ValidationLogic.checkCalendarName(title);
@@ -63,7 +61,6 @@ public class CalendarCreateServlet extends HttpServlet {
 			//カレンダー追加画面に戻る処理かく？
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/calendarCreate.jsp");
 			dispatcher.forward(request, response);
-			return;
 		}
 
 		//カレンダー登録処理↓↓
